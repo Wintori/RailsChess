@@ -1,0 +1,116 @@
+<div class="container-fluid">
+  <!-- LEFT HOMEPAGE -->
+  <div class="row" id="full-row">
+    <div class="col-sm-7 col-sm-offset-1" id="app-info">
+      <!-- APP DESCRIPTION -->
+      <div class="row">
+        <h4>What is Counter Threat?</h4>
+        <!-- bobby fischer -->
+        <%= image_tag ("static_p_banner.jpg"), :id => 'chess-logo' %>
+        <p id="info-text">Counter Threat Chess is a fullstack web application that allows users to play one another in
+          fully-functional, live-updating chess matches.
+          <br><br>
+          <%#= image_tag ("cat_chess.gif"), :id => 'cat' %>
+          Gameplay is completely rule-enforced, so whether you're a beginner at chess or a grandmaster Counter Threat is
+          equipped to handle it. Keep track of your
+          <a href="https://en.wikipedia.org/wiki/Elo_rating_system">Elo rating</a> against other players across the app,
+          and share your successes.<br><br>
+
+          Most of all, have fun!</p>
+      </div>
+      <!-- USER RANKINGS -->
+      <div class="row rankings"><br>
+        <h4>What is Counter Threat?</h4>
+        <div class="container-fluid" id="ranked">
+          <table id="ranked">
+            <% @top_users.each_with_index do |rank, index| %>
+              <% if index <= 6 %>
+                <tr class="row">
+                  <td><%= index + 1 %></td>
+                  <td><%= rank.login %></td>
+                  <td>Rating: <%= rank.login %></td>
+                  <td>Wins: <%= rank.login %>/<%= rank.login %></td>
+                </tr>
+              <% end %>
+            <% end %>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT SIDEBAR -->
+    <div class="col-sm-3 col-sm-1" id="readyplay">
+      <div class="row right">
+        <h4 style="text-align:center">Match Portal</h4>
+
+        <% if user_signed_in? %>
+
+          <div class="active-side">
+
+            <!-- user profile -->
+            <div class="user-profile">
+
+              <!-- username block -->
+              <p id="profile-header" style="text-align:left;font-size:17px">@<b><%= current_user.login %></b></p>
+
+              <!-- user avatar -->
+              <!--              <a href="http://en.gravatar.com/"><%#= gravatar_for current_user, :class => "img-responsive", :id => "gravatar" %></a>-->
+
+              <!-- profile info -->
+              <ul id="prof-data">
+                <li><small><b>WINS: </b><%= current_user.id %></small></li>
+                <li><small><b>RANK: </b>#</small></li>
+                <li>
+                  <small><b>ELO: </b>
+                    <%= current_user.id %>
+                  </small>
+                </li>
+              </ul>
+
+              <!-- sign out if not you -->
+              <small style="display:inline">
+                <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete, :class => 'sign-out-button' %>
+              </small>
+            </div>
+
+            <!-- BUTTONS -->
+            <div class="play-buttons">
+              <!-- new game  -->
+              <%#= button_to('New Game', new_game_path(@game), :class => 'button', method: 'get') %>
+              <%= link_to 'New Game', new_game_path %>
+              <!-- open games -->
+              <%#= button_to('Open Games', games_path(@game), :class=> 'button', method: 'get') %>
+              <%= link_to 'Open Games', games_path %>
+              <!-- my games -->
+              <%#= button_to('My Games', current_user, :class=> 'button', method: 'get') %>
+              <%= link_to 'My Games', root_path %>
+            </div>
+          </div>
+
+          <br>
+
+        <% else %>
+
+          <!-- sign up if you're not a member -->
+          <p style="text-align:center" id="profile-header">Welcome to Counter Threat!
+            <%= link_to 'Sign Up', new_user_registration_path %> or <%= link_to 'Sign In', new_user_session_path %> if
+            you're already a member!
+          </p>
+
+        <% end %>
+      </div>
+
+      <!-- CREATOR CREDITS -->
+
+      <!-- INVITATION BUTTON -->
+      <div class="row invitations right" style="text-align:center;padding-right:10px;">
+        <h4 style="text-align:center;margin-bottom:5px">Invite Friends To Play</h4>
+        <button class="invitation-button" onclick="copyToClipboard('#invitation-link')">Copy Invitation Link to
+          Clipboard
+        </button>
+        <a id="invitation-link" href="http://www.firehose-chess-app.herokuapp.com">http://www.firehose-chess-app.herokuapp.com</a>
+      </div>
+    </div>
+  </div>
+
+</div>

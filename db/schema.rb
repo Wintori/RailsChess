@@ -10,7 +10,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_17_150927) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_18_153257) do
+  create_table "games", force: :cascade do |t|
+    t.string "name"
+    t.string "state"
+    t.integer "white_player_user_id"
+    t.integer "black_player_user_id"
+    t.integer "winner_user_id"
+    t.integer "loser_user_id"
+    t.integer "turn_user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_games_on_name"
+  end
+
+  create_table "pieces", force: :cascade do |t|
+    t.string "name"
+    t.boolean "white"
+    t.integer "x_coord"
+    t.integer "y_coord"
+    t.integer "game_id"
+    t.integer "user_id"
+    t.string "type"
+    t.boolean "captured", default: false, null: false
+    t.integer "move_number", default: 0
+    t.integer "king_check", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_games", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "game_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -20,6 +53,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_17_150927) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "login"
+    t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
