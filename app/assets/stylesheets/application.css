@@ -13,3 +13,114 @@
  *= require_tree .
  *= require_self
  */
+
+.username {
+    color: red;
+}
+
+.homepage {
+    margin: 0 auto;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    max-width: 80%;
+    justify-content: center;
+    align-items: center;
+    background: #2E2F30;
+    color: white;
+}
+
+.container-fluid {
+    min-height: 100%;
+}
+
+.home {
+    margin: 0 auto;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    max-width: 80%;
+    justify-content: center;
+    align-items: center;
+    background: #2E2F30;
+}
+
+.home__blockTitle {
+    display: flex;
+    background: #2E2F30;
+    margin-bottom: 50px;
+}
+
+.home__title1 {
+    font-size: 40px;
+    font-weight: 800;
+    color: white;
+    background-color: #2E2F30;
+    padding: 5px;
+    transition: .5s ease-in color;
+    transition: .5s ease-in-out background-color;
+}
+
+.home__title1:hover {
+    background-color: white;
+    color: black;
+}
+
+.home__title2 {
+    font-size: 40px;
+    font-weight: 800;
+    color: red;
+    padding: 5px;
+}
+
+.home__text {
+    margin: 32px 0 0 20px;
+    color: white;
+    font-size: 20px;
+    font-weight: 500;
+    align-self: start;
+}
+
+.rankings {
+    display: block;
+}
+
+.play-buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: xx-large;
+    gap: 48px;
+    color: #B00100;
+}
+
+.btn-games {
+    transition: .3s ease opacity;
+    opacity: 1;
+}
+
+.btn-games:hover {
+    opacity: 0.6;
+}
+
+.header {
+    width: 100%;
+    color: white;
+    background: #2E2F30;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.login {
+    padding: 5px;
+    font-size: 18px;
+}
+
+.btn {
+    padding: 5px;
+}
+
+.btn:hover {
+    opacity: .6;
+}

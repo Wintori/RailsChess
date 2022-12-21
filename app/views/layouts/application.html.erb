@@ -5,23 +5,26 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
-
-  <% if user_signed_in? %>
-    hello <%= current_user.login %>
-    <%= link_to "Log out", destroy_user_session_path %>
-    <%= link_to 'My Profile', user_profile_path(current_user.id) %>
-
-<% else %>
-    <%= link_to "Log in", new_user_session_path %>
-    <%= link_to "Sign up", new_user_registration_path %>
-  <% end %>
-  <%= link_to 'About', about_path %>
-  <%= link_to 'Home', root_path %>
+  <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
   <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   <%= javascript_importmap_tags %>
+
 </head>
 
 <body>
+<header class="header">
+  <% if user_signed_in? %>
+    <p class="login" >Hello <%= current_user.login %></p>
+    <%= link_to "Log out", destroy_user_session_path, :class => "btn" %>
+    <%= link_to 'My Profile', user_profile_path(current_user.id), :class => "btn" %>
+  <% else %>
+    <%= link_to "Log in", new_user_session_path, :class => "btn" %>
+    <%= link_to "Sign up", new_user_registration_path, :class => "btn" %>
+  <% end %>
+  <%= link_to 'About', about_path, :class => "btn" %>
+  <%= link_to 'Home', root_path, :class => "btn" %>
+
+</header>
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
 <%= yield %>

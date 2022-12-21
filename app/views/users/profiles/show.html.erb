@@ -6,11 +6,11 @@
       <div class="avatar col-4">
         <%#= image_tag 'user.png' %>
       </div>
-      <div class="col-8">
+      <div class="flex">
         <h1 class="username"><%= @user.login %></h1>
         <h3><%= @user.email %></h3>
         <h4 class="member-since">Member Since: <%= @user.created_at.strftime("%B %d, %Y") %></h4>
-        <h4 class="game-count" ><%= @user.login %> total games</h4>
+        <h4 class="text-red" ><%= @user.login %> total games</h4>
       </div>
     </div>
   </div>

@@ -1,26 +1,32 @@
 <div class="container-fluid">
   <!-- LEFT HOMEPAGE -->
-  <div class="row" id="full-row">
+  <div class="homepage" id="full-row">
     <div class="col-sm-7 col-sm-offset-1" id="app-info">
       <!-- APP DESCRIPTION -->
-      <div class="row">
-        <h4>What is Counter Threat?</h4>
+      <div class="home">
+        <div class="home__blockTitle">
+          <p class="home__title1">Rails</p>
+          <p class="home__title2">Chess</p>
+        </div>
+
         <!-- bobby fischer -->
         <%= image_tag ("static_p_banner.jpg"), :id => 'chess-logo' %>
-        <p id="info-text">Counter Threat Chess is a fullstack web application that allows users to play one another in
-          fully-functional, live-updating chess matches.
-          <br><br>
-          <%#= image_tag ("cat_chess.gif"), :id => 'cat' %>
-          Gameplay is completely rule-enforced, so whether you're a beginner at chess or a grandmaster Counter Threat is
-          equipped to handle it. Keep track of your
-          <a href="https://en.wikipedia.org/wiki/Elo_rating_system">Elo rating</a> against other players across the app,
-          and share your successes.<br><br>
-
-          Most of all, have fun!</p>
+        <p class="home__text" id="home-text">RailsChess - это онлайн веб приложение, для игры в шахматы</p>
+      </div>
+      <div class="play-buttons">
+        <!-- new game  -->
+        <%#= button_to('New Game', new_game_path(@game), :class => 'button', method: 'get') %>
+        <%= link_to 'New Game', new_game_path, :class => "btn-games" %>
+        <!-- open games -->
+        <%#= button_to('Open Games', games_path(@game), :class=> 'button', method: 'get') %>
+        <%= link_to 'Open Games', games_path, :class => "btn-games" %>
+        <!-- my games -->
+        <%#= button_to('My Games', current_user, :class=> 'button', method: 'get') %>
+        <%= link_to 'My Games', root_path, :class => "btn-games" %>
       </div>
       <!-- USER RANKINGS -->
-      <div class="row rankings"><br>
-        <h4>What is Counter Threat?</h4>
+      <div class="rankings"><br>
+        <h4>Рейтинг</h4>
         <div class="container-fluid" id="ranked">
           <table id="ranked">
             <% @top_users.each_with_index do |rank, index| %>
@@ -74,17 +80,7 @@
             </div>
 
             <!-- BUTTONS -->
-            <div class="play-buttons">
-              <!-- new game  -->
-              <%#= button_to('New Game', new_game_path(@game), :class => 'button', method: 'get') %>
-              <%= link_to 'New Game', new_game_path %>
-              <!-- open games -->
-              <%#= button_to('Open Games', games_path(@game), :class=> 'button', method: 'get') %>
-              <%= link_to 'Open Games', games_path %>
-              <!-- my games -->
-              <%#= button_to('My Games', current_user, :class=> 'button', method: 'get') %>
-              <%= link_to 'My Games', root_path %>
-            </div>
+
           </div>
 
           <br>
