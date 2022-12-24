@@ -1,0 +1,194 @@
+/*// Place all the styles related to the games controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/ */
+
+
+.black-square {
+  background: #999999;
+}
+
+.board {
+  margin: 20px auto;
+  border-collapse: collapse;
+  border: 15px solid #595959;
+}
+
+.booyah-box.chatbox {
+  flex-direction: column;
+  width: 300px;
+  height: 325px;
+  overflow: auto;
+  padding: 10px;
+}
+
+.captured-box {
+  flex-grow: 10;
+  flex-shrink: 8;
+}
+
+.captured-pieces {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  height: 600px;
+  width: 300px;
+}
+
+.column {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+label.control-label.text.optional {
+  font-size: 0;
+}
+
+.move-history {
+  height: 325px;
+  width: 300px;
+  overflow: auto;
+}
+
+.move-title {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: -15px;
+  margin-bottom: -5px;
+}
+
+.notation {
+  margin: 0;
+}
+
+.piece_cap {
+  width: 70px;
+  height: 70px;
+  opacity: 1;
+}
+
+.player-title {
+  margin: -10px 22px;
+  font-style: italic;
+}
+
+.spacing {
+  flex-shrink: 8;
+}
+
+td {
+  width: 80px;
+  height: 80px;
+}
+
+.ui-state-active {
+  border-style: none;
+}
+
+.white {
+  background: white;
+}
+
+.white-square {
+  background: white;
+}
+
+@media (max-width: 1024px) and (min-width:700px) {
+  .board {
+    display: flex;
+    order: 1;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .captured-pieces {
+    height: 150px;
+    width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    flex-wrap: wrap;
+  }
+  img.selectable-piece {
+    width: 45px;
+    height: 45px;
+  }
+  input.forfeit.btn.btn-danger.btn-lg {
+    margin: -300px -200px;
+    position: absolute;
+  }
+  .leftside {
+    display: flex;
+    order: 2;
+    width: 200px;
+    height: auto;
+  }
+  .move-history {
+    display: none;
+  }
+  .piece_cap {
+    width: 45px;
+    height: 45px;
+  }
+  .captured-box {
+    display: block;
+    flex-direction: column;
+    flex-grow: 2;
+    flex-wrap: wrap;
+  }
+  .rightside {
+    align-items: flex-end;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 2;
+    height: 250px;
+    width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    flex-wrap: wrap;
+    order: 3;
+  }
+  td {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media (max-width: 700px) {
+  .board {
+    display: flex;
+    order: 1;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .booyah-box.chatbox {
+    width: 350px;
+  }
+  .leftside {
+    display: flex;
+    order: 2;
+    justify-content: space-between;
+  }
+  .message-box {
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .move-history {
+    display: none;
+  }
+  .rightside {
+    display: none;
+  }
+  textarea#message_body {
+    width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  td {
+    width: 40px;
+    height: 40px;
+  }
+  img {
+    width: 35px;
+    height: 35px;
+  }
+}

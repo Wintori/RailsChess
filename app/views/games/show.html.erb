@@ -47,7 +47,7 @@
           <tr id= <%= y_coord %>>
             <% (1..8).each do |x_coord| %>
               <td data-x-coord=<%= x_coord %> data-y-coord= <%= y_coord %> class=<%= "#{(y_coord % 2 == x_coord % 2 ? "white-square droppable-square" : "black-square droppable-square")}" %>>
-                <% if gamepiece = @pieces.where("(x_coord = ? AND y_coord = ?)", x_coord, y_coord).first %>
+                <% if (gamepiece = @pieces.where("(x_coord = ? AND y_coord = ?)", x_coord, y_coord).first) %>
                   <span><%= image_tag gamepiece.image, class: "#{gamepiece.name} selectable-piece", id: gamepiece.id %></span>
                 <% end %>
               </td>
@@ -140,7 +140,7 @@
           </button>
           <h3 class="modal-title text-center" id="gameEndModalLabel">
             <% if @game.winner_user_id.present? %>
-              <%= @game.winner.username %> has won the game!
+              <%= @game.winner.login %> has won the game!
             <% else %>
               Stalemate!
             <% end %>

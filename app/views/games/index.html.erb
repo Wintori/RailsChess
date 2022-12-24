@@ -49,9 +49,9 @@
             <div class="indexgame">
               <h5 class="text-center"><%= "Game #{game.id}" %></h5>
               <% if current_user.id == game.white_player_user_id %>
-                <h6 class="text-center"><%= "Opponent: #{game.black_player.username}" %></h6>
+                <h6 class="text-center"><%= "Opponent: #{game.black_player.login}" %></h6>
               <% else %>
-                <h6 class="text-center"><%= "Opponent: #{game.white_player.username}" %></h6>
+                <h6 class="text-center"><%= "Opponent: #{game.white_player.login}" %></h6>
               <% end %>
 
               <div class="row turn">
@@ -83,11 +83,11 @@
             <div class="indexgame">
               <% if game.winner_user_id.present? && game.loser_user_id.present? %>
                 <h5 class="text-center"><%= "Game #{game.id}" %></h5>
-                <h5><%= game.winner.username %> won the game against <%= game.loser.username %></h5>
+                <h5><%= game.winner.login %> won the game against <%= game.loser.login %></h5>
               <% else %>
                 <% if game.white_player_user_id.present? && game.black_player_user_id.present? %>
                   <h5 class="text-center"><%= "Game #{game.id}" %></h5>
-                  <h5>Stalemate between <%= game.white_player.username %> and <%= game.black_player.username %></h5>
+                  <h5>Stalemate between <%= game.white_player.login %> and <%= game.black_player.login %></h5>
                 <% end %>
               <% end %>
             </div>

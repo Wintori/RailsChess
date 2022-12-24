@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'test/index', :controller => "test", :action => "index"
 
   root 'static_pages#home'
 
@@ -16,6 +17,7 @@ Rails.application.routes.draw do
       put :forfeit
     end
   end
+  resources :pieces, only: :update
   namespace :admin do
 
   end
