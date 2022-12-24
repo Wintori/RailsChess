@@ -15,10 +15,13 @@ export default class extends Controller {
     dragStart(event) {
         console.log('dragStart')
         event.target.style.opacity = "0.4";
-        this.dragSrcEl = event.target;
+        // this.dragSrcEl = event.target;
+
 
         event.dataTransfer.effectAllowed = "move";
-        event.dataTransfer.setData("text/html", event.target.innerHTML);
+        event.dataTransfer.clearData();
+        event.dataTransfer.setData("text/plain", event.target.id);
+        // event.dataTransfer.setData("text/html", event.target.innerHTML);
     }
 
     dragEnter(event) {
@@ -47,9 +50,18 @@ export default class extends Controller {
 
     drop(event) {
         console.log('drop')
+        event.stopPropagation();
+
+        event.target.classList.remove("over");
+        this.resetOpacity();
+        const data = event.dataTransfer.getData("text");
+        const source = document.getElementById(data);
+        event.target.appendChild(source);
+
     }
 
     dragEnd(event) {
+        this.resetOpacity();
         console.log('dragEnd')
     }
 

@@ -7,8 +7,8 @@
     <% (1..8).each do |y_coord| %>
       <tr id= <%= y_coord %>>
         <% (1..8).each do |x_coord| %>
-          <td draggable="true" data-controller="test" data-x-coord=<%= x_coord %> data-y-coord=<%= y_coord %> data-test-target="square" class=<%= "#{(y_coord % 2 == x_coord % 2 ? "white-square droppable-square" : "black-square droppable-square")}" %>>
-            <button data-action="click->test#greet" data-test-id-param=<%= x_coord * y_coord %>>
+          <td draggable="true" data-action=" dragover->test#dragOver drop->test#drop " data-controller="test" data-x-coord=<%= x_coord %> data-y-coord=<%= y_coord %>  data-test-target="square" class=<%= "#{(y_coord % 2 == x_coord % 2 ? "white-square droppable-square" : "black-square droppable-square")}" %>>
+            <button  data-action="click->test#greet" data-test-id-param=<%= x_coord * y_coord %>>
               <% if (gamepiece = @pieces.where("(x_coord = ? AND y_coord = ?)", x_coord, y_coord).first) %>
                 <span draggable="true" data-action="dragstart->test#dragStart dragover->test#dragOver dragenter->test#dragEnter drop->test#drop dragend->test#dragEnd dragleave->test#dragLeave" > <%= image_tag gamepiece.image, class: "#{gamepiece.name} selectable-piece", id: gamepiece.id %></span>
               <% end %></button>
@@ -19,3 +19,51 @@
     </tbody>
   </table>
 </div>
+
+<!--<script>-->
+<!--    document.querySelectorAll(".box");-->
+<!--    $( ".selectable-piece" ).draggable({-->
+<!--        cancel: "a.ui-icon", // clicking an icon won't initiate dragging-->
+<!--        revert: "invalid",-->
+<!--        containment: "document",-->
+<!--        snap: ".document td",-->
+<!--        snapTolerance: 20,-->
+<!--        helper: "clone",-->
+<!--        cursor: "move"-->
+<!--    });-->
+<!--    $( ".droppable-square").droppable({-->
+<!--        accept: ".selectable-piece",-->
+<!--        tolerance: "pointer",-->
+<!--        classes: {-->
+<!--            "ui-droppable-active": "ui-state-active",-->
+<!--            "ui-droppable-hover": "ui-state-hover"-->
+<!--        },-->
+
+<!--        drop: function( event, ui ) {-->
+<!--            const $newDroppableSquare = $(this)-->
+<!--            $.ajax({-->
+<!--                beforeSend: function(xhr) {-->
+<!--                    xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))-->
+<!--                },-->
+<!--                type: "PATCH",-->
+<!--                dataType: 'text',-->
+<!--                url: "/pieces/" + ui.draggable.attr('id'),-->
+<!--                data: {-->
+<!--                    piece: {-->
+<!--                        x_coord: $(this).data("x-coord"),-->
+<!--                        y_coord: $(this).data("y-coord")-->
+<!--                    },-->
+<!--                },-->
+<!--                error:  function(xhr){-->
+<!--                    var errorMessage = $.parseJSON(xhr.responseText).message-->
+<!--                    var alertClass = $.parseJSON(xhr.responseText).class-->
+<!--                    $("#alert_msg").addClass(alertClass)-->
+<!--                    $("#alert_msg").html('<p>'+ errorMessage + '</p>')-->
+<!--                },-->
+<!--                success: function(){-->
+<!--                    $newDroppableSquare.append($(ui.draggable));-->
+<!--                }-->
+<!--            });-->
+<!--        }-->
+<!--    });-->
+<!--</script>-->
