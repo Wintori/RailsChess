@@ -41,15 +41,17 @@
 
 
     <div class="board">
-      <table>
+      <table id='gameTable'>
         <tbody>
         <% (1..8).each do |y_coord| %>
-          <tr id= <%= y_coord %>>
+          <tr class="trTable" id= <%= y_coord %>>
             <% (1..8).each do |x_coord| %>
               <td data-x-coord=<%= x_coord %> data-y-coord= <%= y_coord %> class=<%= "#{(y_coord % 2 == x_coord % 2 ? "white-square droppable-square" : "black-square droppable-square")}" %>>
+                <button class="buttonTable">
                 <% if (gamepiece = @pieces.where("(x_coord = ? AND y_coord = ?)", x_coord, y_coord).first) %>
                   <span><%= image_tag gamepiece.image, class: "#{gamepiece.name} selectable-piece", id: gamepiece.id %></span>
                 <% end %>
+                </button>
               </td>
             <% end %>
           </tr>

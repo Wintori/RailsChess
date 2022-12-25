@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'test/index', :controller => "test", :action => "index"
 
+
   root 'static_pages#home'
 
   get "/about", :controller => "static_pages", :action => "about"
