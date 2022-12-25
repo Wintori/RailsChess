@@ -37,6 +37,10 @@ export default class extends Controller {
 
         console.log('dragStart');
         (event.target.parentElement.parentElement).style.opacity = "0.4";
+
+        event.dataTransfer.effectAllowed = "move";
+        event.dataTransfer.clearData();
+        event.dataTransfer.setData("text/plain", event.target.id);
         // this.dragSrcEl = event.target;
 
 
