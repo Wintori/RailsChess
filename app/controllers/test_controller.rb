@@ -4,7 +4,7 @@ class TestController < ApplicationController
   end
 
   def index
-    @game = Game.find_by_id(1)
+    @game = Game.find_by_id(3)
     @pieces = @game.pieces
   end
 

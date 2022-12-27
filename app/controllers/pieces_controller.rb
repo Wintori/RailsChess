@@ -34,7 +34,7 @@ class PiecesController < ApplicationController
       game_end = true
     end
     if game_end == false && !(@piece.type == "Pawn" && @piece.pawn_promotion?)
-      update_moves
+      # update_moves
       switch_turns
       render json: {}, status: 200
     else

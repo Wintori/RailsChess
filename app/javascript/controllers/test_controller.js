@@ -5,6 +5,8 @@ export default class extends Controller {
     static targets = ["name_text_input", "square"];
 
 
+
+
     greet(event) {
         console.log(`click ${event.params['id']}`);
     }
@@ -12,6 +14,20 @@ export default class extends Controller {
     get name() {
         return this.squareTarget.attributes['data-square-id'].value;
     }
+
+    patchFigure = (element, dst) => {
+        return fetch(`/pieces/${element.id}`, {
+            method: 'PATCH',
+            headers: {'Content-Type': 'application/json; charset=UTF-8', 'Accept' : 'text/plain'},
+            body: JSON.stringify({
+                piece: {
+                    x_coord: dst.getAttribute('data-x-coord'),
+                    y_coord: dst.getAttribute('data-y-coord')
+                }
+            })
+        })
+    }
+
 
     closest(el, selector) {
         if (Element.prototype.closest) {
@@ -83,17 +99,22 @@ export default class extends Controller {
 
 
     drop(event) {
-        console.log(event.target)
         console.log('drop');
+        console.log(event.target.parentElement)
+
         event.stopPropagation();
 
-        event.target.closest('td').classList.remove("over");
-        this.resetOpacity();
+
         const data = event.dataTransfer.getData("text");
         const source = document.getElementById(data);
-        event.target.appendChild(source);
-        event.target.style.opacity = "1";
-
+        console.log(source.children[0])
+        this.patchFigure(source.children[0], event.target.parentElement)
+            .then(()=>{
+                event.target.closest('td').classList.remove("over");
+                this.resetOpacity();
+                event.target.appendChild(source);
+                event.target.style.opacity = "1";
+            })
     }
 
     dragEnd(event) {
