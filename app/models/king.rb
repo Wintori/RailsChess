@@ -67,11 +67,11 @@ class King < Piece
 
   def castle(new_x_coord, new_y_coord)
     return false unless legal_to_castle?(new_x_coord, new_y_coord)
-    self.update_attributes(x_coord: new_x_coord, y_coord: new_y_coord, move_number: self.move_number + 1)
+    self.update(x_coord: new_x_coord, y_coord: new_y_coord, move_number: self.move_number + 1)
     if new_x_coord == 3
-      @rook_for_castling.update_attributes(x_coord: 4, move_number: 1)
+      @rook_for_castling.update(x_coord: 4, move_number: 1)
     else new_x_coord == 7
-      @rook_for_castling.update_attributes(x_coord: 6, move_number: 1)
+      @rook_for_castling.update(x_coord: 6, move_number: 1)
     end
   end
 

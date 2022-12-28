@@ -46,11 +46,10 @@
         <% (1..8).each do |y_coord| %>
           <tr id= <%= y_coord %>>
             <% (1..8).each do |x_coord| %>
-              <td draggable="true" data-action=" dragover->test#dragOver drop->test#drop " data-controller="test" data-x-coord=<%= x_coord %> data-y-coord=<%= y_coord %>  data-test-target="square" class="<%= (y_coord % 2 == x_coord % 2 ? "white-square droppable-square" : "black-square droppable-square") %>">
-                <button class="buttonTable"  data-action="click->test#greet" data-test-id-param=<%= x_coord * y_coord %>>
-                  <% if (gamepiece = @pieces.where("(x_coord = ? AND y_coord = ?)", x_coord, y_coord).first) %>
-                    <span draggable="true" data-action="dragstart->test#dragStart dragover->test#dragOver dragenter->test#dragEnter drop->test#drop dragend->test#dragEnd dragleave->test#dragLeave" > <%= image_tag gamepiece.image, class: "#{gamepiece.name} selectable-piece", id: gamepiece.id %></span>
-                  <% end %></button>
+              <td  data-controller="droppable" data-action=" dragover->droppable#dragOver dragenter->droppable#dragEnter dragleave->droppable#dragLeave drop->droppable#drop "  data-x-coord=<%= x_coord %> data-y-coord=<%= y_coord %> class="<%= (y_coord % 2 == x_coord % 2 ? "white-square droppable-square" : "black-square droppable-square") %>">
+                <% if (gamepiece = @pieces.where("(x_coord = ? AND y_coord = ?)", x_coord, y_coord).first) %>
+                  <span draggable="true" data-controller="draggable" data-action="dragstart->draggable#dragStart dragenter->draggable#dragEnter  dragleave->draggable#dragLeave" > <%= image_tag gamepiece.image,  id: gamepiece.id %></span>
+                <% end %></button>
               </td>
             <% end %>
           </tr>

@@ -132,7 +132,7 @@ class Piece < ApplicationRecord
   #end
 
   def remove_piece(dead_piece)
-      dead_piece.update_attributes(x_coord: nil, y_coord: nil, captured: true) ##Should we have a piece status to add to db? Like captured/in play? This would be helpful for stats also
+      dead_piece.update(x_coord: nil, y_coord: nil, captured: true) ##Should we have a piece status to add to db? Like captured/in play? This would be helpful for stats also
   end
 
   #def move_to_empty_square(x_end, y_end)
@@ -140,20 +140,20 @@ class Piece < ApplicationRecord
   #end
 
   def update_winner
-    game.update_attributes(state: "end")
+    game.update(state: "end")
     if white?
-      game.update_attributes(winner_user_id: game.black_player_user_id)
+      game.update(winner_user_id: game.black_player_user_id)
     else
-      game.update_attributes(winner_user_id: game.white_player_user_id)
+      game.update(winner_user_id: game.white_player_user_id)
     end
   end
 
   def update_loser
-    game.update_attributes(state: "end")
+    game.update(state: "end")
     if white?
-      game.update_attributes(loser_user_id: game.black_player_user_id)
+      game.update(loser_user_id: game.black_player_user_id)
     else
-      game.update_attributes(loser_user_id: game.white_player_user_id)
+      game.update(loser_user_id: game.white_player_user_id)
     end
   end
 

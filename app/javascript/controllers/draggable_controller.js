@@ -38,9 +38,9 @@ export default class extends Controller {
         // (this.closest(event.target, 'td')).classList.add("over");
         event.target.closest('td').classList.add("over");
         // event.target.classList.add("over");
-        if (event.preventDefault) {
-            event.preventDefault();
-        }
+        // if (event.preventDefault) {
+        //     event.preventDefault();
+        // }
         return false;
     }
 
