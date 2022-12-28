@@ -6,8 +6,8 @@ export default class extends Controller {
 
   static targets = ["name_text_input", "square"];
 
-  patchFigure = (figure, dst) => {
-    return fetch(`/pieces/${figure.id}`, {
+  patchFigure = (figure_id, dst) => {
+    return fetch(`/pieces/${figure_id}`, {
       method: 'PATCH',
       headers: {'Content-Type': 'application/json; charset=UTF-8', 'Accept' : 'text/plain'},
       body: JSON.stringify({
@@ -79,15 +79,15 @@ export default class extends Controller {
     event.stopPropagation();
 
 
-    const data = event.dataTransfer.getData("text");
-    const source = document.getElementById(data);
-    console.log('figure-source');
-    console.log(source.children[0]); //фигура которую перемещаем
-    this.patchFigure(source.children[0], event.target)
+    const id_figure_source = event.dataTransfer.getData("text");
+    const figure = document.getElementById(id_figure_source);
+    console.log('id-figure-source');
+    console.log(id_figure_source); //фигура которую перемещаем
+    this.patchFigure(id_figure_source, event.target)
         .then(()=>{
           event.target.closest('td').classList.remove("over");
           this.resetOpacity();
-          event.target.appendChild(source);
+          event.target.appendChild(figure);
           event.target.style.opacity = "1";
         })
   }

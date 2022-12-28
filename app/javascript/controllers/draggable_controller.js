@@ -9,16 +9,20 @@ export default class extends Controller {
 
         // Вот тут по хорошему бы делать проверку фигуры
 
-        console.log('dragStart');
+        // console.log('dragStart');
         (event.target.parentElement.parentElement).style.opacity = "0.4";
 
         event.dataTransfer.effectAllowed = "move";
         event.dataTransfer.clearData();
+        // console.log('source1');
+        // console.log( event.target.id);
         event.dataTransfer.setData("text/plain", event.target.id);
         // this.dragSrcEl = event.target;
-        event.dataTransfer.effectAllowed = "move";
-        event.dataTransfer.clearData();
-        event.dataTransfer.setData("text/plain", event.target.parentElement.id);
+        // event.dataTransfer.effectAllowed = "move";
+        // event.dataTransfer.clearData();
+        // console.log('source2');
+        // console.log(event.target.parentElement.id);
+        // event.dataTransfer.setData("text/plain", event.target.parentElement.id);
 
 
         // event.dataTransfer.setData("text/html", event.target.innerHTML);
